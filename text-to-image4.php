@@ -11,11 +11,29 @@
     <script src="/assets/js/jquery-3.6.1.min.js"></script>
 
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
 
     <link rel="stylesheet" href="/assets/css/main.css">
 
-    <script src="deepai.min.js"></script>
     
+    <script data-ad-client="ca-pub-8348187590713387" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161314-54"></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-161314-54');
+    </script>
 </head>
 
 <body>
@@ -36,7 +54,7 @@
                 
                 <!-- <button type="submit" name="submit" id="generate-text" class="button is-link mt-3"> -->
                 <button type="submit" name="submit" id="generate-text" class="btn btn-primary mt-3">
-                <!-- <button id="generate-text" onclick="genImg()" class="btn btn-primary mt-3"> -->
+                <!-- <button onclick="myFunction()" class="btn btn-primary mt-3"> -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -50,8 +68,7 @@
                 <div id="model-output" class="column text-center">
                     <div id="tutorial" class="subtitle">
                         <em>Your 4 Images Will Appear Here In Around 20-30 Seconds!</em>
-                        <div id="model-output"></div>
-
+                        <div id="test"></div>
                     </div>
                 </div>
             </div>
@@ -85,8 +102,9 @@ Painting of Elon Musk French style
             </div>
         </div>
     </div>
-    <?php include 'footer_menu.php'; ?>
-    
+
+
+
     <script type="text/javascript">
         $(document).ready(function() {
             $(document).on('keyup', function(e) {
@@ -94,48 +112,48 @@ Painting of Elon Musk French style
                     $('#generate-text').trigger('click');
                 }
             });
-        //genImg = () =>{
             $("#generate-text").click(function() {
                 var dataString = {};
                 var qes = $('.question_input_field').val();
-                var crit = $('input[name=question]').val();
+
                 if ($('#question').val()) {
                     $.ajax({
                         url: "api_text-to-image.php",
                         type: 'POST',
-                        async: true,
                         cache: false,
-                        data: {question: qes},
+                        data: {
+                            question: qes, // send along this data (can add more data separated by comma)
+                        },
                         beforeSend: function(data) {
                             $('#generate-text').addClass("is-loading");
                             $('#generate-text').prop("disabled", true);
                         },
-                        success: function(response){
-                            if(response == "clean")
-                            {
-                                deepai.setApiKey('2350dbe7-ecfd-47ed-9ffa-b29ecc988b2e');
-                                (async function() {
-                                    resp = await deepai.callStandardApi("stable-diffusion", {
-                                    text:crit,
-                                    });
-                                    $('#tutorial').remove();
-                                    $('#model-output').html("");
-                                    var html = '<div class=\"gen-box\"><img src="'+resp['output_url']+' " width="1024"></div><div class="gen-border"></div>';
-                                    $(html).appendTo('#model-output').hide().fadeIn("slow");
-                                    $('#generate-text').removeClass("is-loading");
-                                    $('#generate-text').prop("disabled", false);
-                                })();
-                                
-                            }else{
-                                $('#generate-text').removeClass("is-loading");
-                                $('#generate-text').prop("disabled", false);
-                                $('#model-output').html(response);
-                            }
-                        },
+                        timeout: 100000,
+                        success: function(response) {
+                            $('#generate-text').removeClass("is-loading");
+                            $('#generate-text').prop("disabled", false);
+                            $('#tutorial').remove();
+                            $('#model-output').html("");
+                            // var html = '<div class=\"gen-box\">' + response + '</div><div class="gen-border"></div>';
+                            // $(html).appendTo('#model-output').hide().fadeIn("slow");
 
+                            var crit = $('input[name=question]').val();
+                            alert("Loaded  here");
+                            deepai.setApiKey('2350dbe7-ecfd-47ed-9ffa-b29ecc988b2e');
+                            (async function() {
+                                resp = await deepai.callStandardApi("stable-diffusion", {
+                                    // text: "Love",
+                                    text:crit,
+                                });
+                            console.log(resp);
+                                $('#test').html('<img src="'+resp['output_url']+'" width="1024">');
+                            })()
+
+
+                        }
                     });
-                    
-                }else {
+
+                } else {
 
                     $('#generate-text').removeClass("is-loading");
                     $('#generate-text').prop("disabled", false);
@@ -144,8 +162,35 @@ Painting of Elon Musk French style
                     var html = '<div class="gen-box warning">Please fill in the form with your word/phrase! Please try again!</div><div class="gen-border"></div>';
                     $(html).appendTo('#model-output').hide().fadeIn("slow");
                 }
+
             });
         });
     </script>
+    
+     <?php include 'footer_menu.php'; ?>
+     <script src="https://cdnjs.deepai.org/deepai.min.js"></script>
+
+     <script>
+        function myFunction() {
+            var resp;
+
+            $('#generate-text').addClass("is-loading");
+            $('#generate-text').prop("disabled", true);
+
+            var crit = $('input[name=question]').val();
+            deepai.setApiKey('2350dbe7-ecfd-47ed-9ffa-b29ecc988b2e');
+            (async function() {
+                resp = await deepai.callStandardApi("stable-diffusion", {
+                    // text: "Love",
+                    text:crit,
+                });
+            console.log(resp);
+                $('#test').html('<img src="'+resp['output_url']+'" width="1024">');
+            })()
+
+        }
+    </script>
+   
+    
 </body>
 </html>
