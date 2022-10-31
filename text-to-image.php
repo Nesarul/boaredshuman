@@ -8,11 +8,11 @@
     <meta content="Type what you want your image to look like and our AI will create it for you." name="description" />
     <meta content="text to image, image generator" name="keywords" />
     
-    <script src="/assets/js/jquery-3.6.1.min.js"></script>
+    <script src="/boaredshuman/assets/js/jquery-3.6.1.min.js"></script>
 
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/boaredshuman/assets/bootstrap/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/boaredshuman/assets/css/main.css">
 
     <script src="deepai.min.js"></script>
     
