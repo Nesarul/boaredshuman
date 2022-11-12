@@ -8,7 +8,8 @@ if (isset($_POST['question']) && !empty($_POST['question'])) {
 	fclose($fopen);
 
 	$lb = "\n";
-	$bw = explode($lb, $fread);
+	// $bw = explode($lb, $fread);
+	$bw = array_map('trim', explode($lb, $fread));
 	
 	if ($str == trim($str) && strpos($str, ' ') !== false) {
 		$cr = explode(' ',$str);
@@ -16,13 +17,13 @@ if (isset($_POST['question']) && !empty($_POST['question'])) {
 		{
 			if(in_array($cr[$i],$bw))
 			{
-				echo "We do not allow NSFW (r-rated or offensive) content. Please try a different word or phrase.";
+				echo "<span style='color:#f00'><strong>We do not allow NSFW (r-rated or offensive) content. Please try a different word or phrase.</strong></span>";
 				die();
 			}
 		}
 	}else if(in_array($str,$bw))
 	{
-		echo "We do not allow NSFW (r-rated or offensive) content. Please try a different word or phrase.";
+		echo "<span style='color:#f00'><strong>We do not allow NSFW (r-rated or offensive) content. Please try a different word or phrase.</strong></span>";
 		die();
 	}
 	

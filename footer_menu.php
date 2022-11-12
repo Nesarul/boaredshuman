@@ -10,9 +10,8 @@
 <BR>
 <BR>
 <center>
-<br>
-<p class="text-center">
 <a href="https://boredhumans.com">Back To BoredHumans.com Main Page</a></p>
+</center>
 
 <table width="80%" align="center">
             

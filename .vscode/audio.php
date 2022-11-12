@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="Type what you want your image to look like and our AI will create it for you." name="description" />
     <meta content="text to image, image generator" name="keywords" />
-    <script src="/assets/js/jquery-3.6.1.min.js"></script>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <script src="/boaredshuman/assets/js/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="/boaredshuman/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/boaredshuman/assets/css/main.css">
     <script src="deepai.min.js"></script>
 <script data-ad-client="ca-pub-8348187590713387" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161314-54"></script>
@@ -21,16 +21,17 @@
             <div class="col text-center">
                 <p class="h3"><strong>Text-To-Image Generator</strong></p>
                 <p class="mt-3">Type what you want to see and our AI will create 4 different images for you:</p>
-                <p><input id="question" type="text" size="30" name="question" class="search-query  question_input_field mt-3" placeholder="Enter Your Phrase Here"></p>
-                
-                <!-- <button type="submit" name="submit" id="generate-text" class="button is-link mt-3"> -->
-                <button type="submit" name="submit" id="generate-text" class="btn btn-primary mt-3">
-                <!-- <button id="generate-text" onclick="genImg()" class="btn btn-primary mt-3"> -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg>&nbsp;&nbsp; Generate The 4 Images!
-                </button>
+                <div class="col-12 col-md-6 offset-md-3">
+                    <div class="row">
+                        <div class="col-12 col-sm-8 mb-3">
+                            <label for="formFileSm" class="form-label text-left">Upload Audio File (FLAC, WAV, or MP3 files Only)</label>
+                            <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        </div>
+                        <div class="col-12 col-sm-4 mb-3 d-flex align-items-end">
+                            <button type="button" class="btn btn-sm btn-primary">Upload</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 <BR>
